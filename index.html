@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfolio of a software developer specializing in Go, JavaScript, web apps, microservices, and cybersecurity">
+    <title>Hezborn Shikuku - Software Developer</title>
+    <link rel="stylesheet" href="static/css/styles.css">
+    <link rel="script" href="static/js/index.js">
+    <script>
+        function toggleAccordion(sectionId) {
+            const allContentSections = document.querySelectorAll('.accordion-content');
+
+            // Close all sections except the one that is clicked
+            allContentSections.forEach((section) => {
+                if (section.id !== sectionId) {
+                section.style.display = 'none';
+                }
+            });
+
+            // Toggle the display of the clicked section
+            const content = document.getElementById(sectionId);
+            content.style.display = content.style.display === 'block' ? 'none' : 'block';
+
+        }
+    </script>
+    
+</head>
+<body>
+<div class="container">
+   <div class="left-side">
+         <!-- Header / Navigation -->
+        <header>
+            <img src="static/your-photo.jpg" alt="Your Name" class="profile-photo">
+            <h1>Hezborn A. Shikuku</h1>
+            <nav>
+            <ul>
+                <li><a href="#about" onclick="toggleAccordion('about-content')">About</a></li>
+                <li><a href="#skills" onclick="toggleAccordion('skills-content')">Skills</a></li>
+                <li><a href="#projects" onclick="toggleAccordion('projects-content')">Projects</a></li>
+                <!-- <li><a href="" id="contact-button" type="button" onclick="toggleSocialLinks()">Contact</a></li> -->
+                <li><!-- Contact Button to toggle social links (Add type="button" to prevent form submission) -->
+                    <button id="contact-button" type="button" onclick="toggleSocialLinks()">Contact</button></li>
+            </ul>
+            <!-- Social Links Section (initially hidden) -->
+            <div id="social-links" style="display: none; margin-top: 1em;">
+                <a href="https://x.com/@Chiddy_lab" target="_blank" title="X (Twitter)">
+                    <img src="/static/icons/x-logo.svg" alt="X (Twitter)" class="social-icon">
+                </a>
+                <a href="https://linkedin.com/in/hezborn-achido-shikuku-38b21615b/" target="_blank" title="LinkedIn">
+                    <img src="/static/icons/linkedin-logo.svg" alt="LinkedIn" class="social-icon">
+                </a>
+                <a href="https://dev.to/hezborn_shikuku_667c15f67" target="_blank" title="Dev.to">
+                    <img src="/static/icons/devto-logo.svg" alt="Dev.to" class="social-icon">
+                </a>
+                <a href="https://github.com/Mania124" target="_blank" title="GitHub">
+                    <img src="/static/icons/github-logo.svg" alt="GitHub" class="social-icon">
+                </a>
+            </div>
+            </nav>
+            <script>
+                function toggleSocialLinks() {
+                    const socialLinks = document.getElementById("social-links");
+                    // Toggle display between "none" and "inline"
+                    if (socialLinks.style.display === "none" || socialLinks.style.display === "") {
+                        socialLinks.style.display = "inline";
+                    } else {
+                        socialLinks.style.display = "none";
+                    }
+                }
+            </script>
+        </header>
+
+        <!-- Hero Section -->
+        <section id="hero">
+            <h2><span id="typed-text"></span></h2>
+        </section>
+    </div>
+    <div class="right-side">
+         <!-- About Section -->
+        <section id="about">
+            <h2 onclick="toggleAccordion('about-content')">About Me</h2>
+            <div id="about-content" class="accordion-content">
+                <p>
+                    I'm a dedicated software developer with expertise in Go and JavaScript, focusing on building secure, scalable solutions across web applications, microservices, and standalone apps. With a strong interest in cybersecurity, I aim to deliver robust, efficient systems that meet modern security and performance demands. I’m passionate about leveraging technology to solve complex problems and continuously honing my skills to stay ahead in this dynamic field.
+                </p>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills">
+            <h2 onclick="toggleAccordion('skills-content')">Skills & Technologies</h2>
+            <div id="skills-content" class="accordion-content">
+                <ul>
+                    <li>Languages: <strong>Go, JavaScript</strong></li>
+                    <li>Web Development: <strong>HTML, CSS, Node.js</strong></li>
+                    <li>Version Control: <strong>Git</strong></li>
+                    <li>Microservices & Cloud: <strong>Docker, AWS</strong></li>
+                    <li>Cybersecurity: <strong>Security best practices, threat mitigation</strong></li>
+                    <!-- Add any other relevant skills -->
+                </ul>
+            </div> 
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects">
+            <h2 onclick="toggleAccordion('projects-content')">Projects</h2>
+            <div id="projects-content" class="accordion-content">
+                <!-- Project Example -->
+                <div class="project">
+                    <h3>Groupie Trackers</h3>
+                    <p>Groupie Tracker  is a Go-based client-server project displaying band and artist data with concert details in a user-friendly interface.</p>
+                    <!-- <a href="project-link.html" target="_blank">View Project</a> -->
+                    <a href="https://github.com/Mania124/Groupies" target="_blank">View Code</a>
+                </div>
+
+                <div class="project">
+                    <h3>Ascii-Art Web</h3>
+                    <p>A web app using Go, HTML, CSS, and JavaScript that converts text to ASCII art, deployable via Docker for consistent environments.</p>
+                    <!-- <a href="project-link.html" target="_blank">View Project</a> -->
+                    <a href="https://github.com/Mania124/ascii-art-web" target="_blank">View Code</a>
+                </div>
+
+                <!-- Add more projects as needed -->
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <h2 onclick="toggleAccordion('contact-content')">Contact Me</h2>
+            <div id="contact-content" class="accordion-content">
+                <p>Feel free to reach out for collaborations or job opportunities.</p>
+                <a href="Your_Resume.pdf" download>Download Resume</a>
+                <form action="send_email.php" method="post">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="4" required></textarea>
+
+                    <button type="submit">Send Message</button>
+                </form>
+            </div>   
+        </section>
+
+    </div>
+   
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Hezborn Shikuku. All Rights Reserved.</p>
+        <ul>
+            <li><a href="https://www.linkedin.com/in/hezborn-achido-shikuku-38b21615b/" target="_blank">LinkedIn</a></li>
+            <li><a href="https://github.com/Mania124" target="_blank">GitHub</a></li>
+        </ul>
+    </footer>
+</div>
+<script>
+    let text = "I am a Software Developer in Web Apps, Microservices & Cybersecurity.";
+    const textAlternatives = [
+        "I am a Software Developer in Web Apps, Microservices & Cybersecurity.",
+        "I specialize in Go, JavaScript, and building secure, scalable solutions."
+    ];
+    let index = 0;
+    let isDeleting = false;
+    
+    // Function to switch text every time the typing finishes
+    function toggleText() {
+        text = (text === textAlternatives[0]) ? textAlternatives[1] : textAlternatives[0];
+    }
+
+    function typeText() {
+        const typedText = document.getElementById("typed-text");
+
+        if (!isDeleting && index < text.length) {
+            // Type each character
+            typedText.textContent += text.charAt(index);
+            index++;
+            if (index === text.length) {
+                // Pause and then start deleting
+                isDeleting = true;
+                setTimeout(typeText, 1500); // Wait 1.5 seconds before starting to delete
+                return;
+            }
+        } else {
+            // Delete each character
+            typedText.textContent = text.substring(0, index - 1);
+            index--;
+            if (index === 0) {
+                // When finished deleting, switch the text and start typing again
+                toggleText(); // Toggle between the two texts
+                isDeleting = false;
+                setTimeout(typeText, 500); // Wait 0.5 seconds before retyping
+                return;
+            }
+        }
+
+        // Adjust typing and deleting speed
+        const speed = isDeleting ? 50 : 100;
+        setTimeout(typeText, speed);
+    }
+
+    // Start typing effect when the page loads
+    window.onload = typeText;
+</script>
+
+</body>
+</html>
