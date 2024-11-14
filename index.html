@@ -7,7 +7,23 @@
     <title>Hezborn Shikuku - Software Developer</title>
     <link rel="stylesheet" href="static/css/styles.css">
     <link rel="script" href="static/js/index.js">
+
     <script>
+        function sendEmail(event) {
+            event.preventDefault(); // Prevent the form from submitting normally
+
+            emailjs.sendForm("service_yobz9j8", "template_zzy5c2i", "#contact-form")
+                .then(
+                    function(response) {
+                        alert("Message sent successfully!");
+                        document.getElementById("contact-form").reset(); // Clear the form after submission
+                    },
+                    function(error) {
+                        alert("Failed to send message. Please try again later.");
+                        console.error("EmailJS Error:", error); // Log error for debugging
+                    }
+                );
+        }
         function toggleAccordion(sectionId) {
             const allContentSections = document.querySelectorAll('.accordion-content');
 
@@ -131,7 +147,7 @@
             <div id="contact-content" class="accordion-content">
                 <p>Feel free to reach out for collaborations or job opportunities.</p>
                 <a href="Your_Resume.pdf" download>Download Resume</a>
-                <form action="send_email.php" method="post">
+                <form id="contact-form" onsubmit="sendEmail(event)">
                     <label for="name">Name</label>
                     <input type="text" id="name" name="name" required>
 
@@ -205,6 +221,9 @@
     // Start typing effect when the page loads
     window.onload = typeText;
 </script>
-
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3.11.0/dist/email.min.js"></script>
+<script>
+    emailjs.init("eODjDIgxiGHskONK-"); // Replace with your EmailJS User ID
+</script>
 </body>
 </html>
