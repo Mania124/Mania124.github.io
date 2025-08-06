@@ -1,4 +1,26 @@
-/* Global Styles */
+Global Styles
+:root {
+  --bg-color: #ffffff;
+  --text-color: #333333;
+  --header-bg: #333333;
+  --header-text: #ffffff;
+  --accent-color: #3498db;
+  --section-bg: #f4f4f4;
+  --card-bg: #f9f9f9;
+  --border-color: #ddd;
+}
+
+[data-theme="dark"] {
+  --bg-color: #121212;
+  --text-color: #f5f5f5;
+  --header-bg: #1e1e1e;
+  --header-text: #ffffff;
+  --accent-color: #4fc3f7;
+  --section-bg: #1e1e1e;
+  --card-bg: #2a2a2a;
+  --border-color: #333333;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -8,7 +30,8 @@
 
 body {
     line-height: 1.6;
-    color: #333;
+    color: var(--text-color);
+    background-color: var(--bg-color);
 }
 /* Container for two-column layout */
 .container {
@@ -20,8 +43,8 @@ body {
 /* Left side (header and hero) */
 .left-side {
     /* flex: 1; */
-    background: #333;
-    color: #fff;
+    background-color: var(--header-bg);
+    color: var(--header-text);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -40,7 +63,7 @@ body {
 
 a {
     text-decoration: none;
-    color: #3498db;
+    color: var(--accent-color);
 }
 
 h1, h2, h3 {
@@ -49,12 +72,10 @@ h1, h2, h3 {
 
 /* Layout Styles */
 header {
-    background: #333;
-    color: #fff;
+    background: var(--header-bg);
+    color: var(--header-text);
     padding: 1em 0;
     text-align: center;
-    /* position: fixed;
-    top: 0%; */
 }
 
 header h1 {
@@ -62,10 +83,9 @@ header h1 {
 }
 .right-side{
     width: 70%;
-    /* flex: 1; */
     padding: 2em;
     overflow-y: auto;
-    background: #f4f4f4;
+    background-color: var(--section-bg);
 }
 header nav ul {
     list-style-type: none;
@@ -83,14 +103,14 @@ header nav ul li {
     font-weight: bold;
     background: none;
     border: none;
-    color: #fff;
+    color: var(--bg-color);
     font-size: 1em;
 }
 #contact-button:hover{
     cursor: pointer;
 } 
 header nav ul li a {
-    color: #fff;
+    color: var(--bg-color);
     font-weight: bold;
 }
 
@@ -100,14 +120,14 @@ section {
     margin: 0 auto;
 }
 #social-links a:hover {
-    background-color: #333;
+    background-color: var(--text-color);
     padding: 5px;
     border-radius: 50%;
 }
 /* Hero Section */
 #hero {
     text-align: center;
-    background: #333;
+    background: var(--text-color);
     padding: 2em 0;
 }
 
@@ -124,8 +144,8 @@ section {
 .button {
     display: inline-block;
     padding: 0.5em 1em;
-    background: #3498db;
-    color: #fff;
+    background-color: var(--accent-color);
+    color: var(--bg-color);
     border-radius: 5px;
     margin-top: 1em;
 }
@@ -137,30 +157,32 @@ section {
 }
 
 #skills ul li {
-    background: #f4f4f4;
+    background: var(--section-bg);
     margin-bottom: 0.5em;
     padding: 0.5em;
-    border-left: 4px solid #3498db;
+    border-left: 4px solid;
+    border-color: var (--accent-color);
 }
 
 /* Projects Section */
 .project {
     margin-bottom: 1.5em;
     padding: 1em;
-    background: #f9f9f9;
-    border: 1px solid #ddd;
+    background: var(--card-bg);
+    border: 1px solid;
+    border-color: var(--border-color);
     border-radius: 5px;
 }
 
 .project h3 {
     font-size: 1.2em;
-    color: #333;
+    color: var(--header-bg);
 }
 
 .project a {
     display: inline-block;
     margin-right: 1em;
-    color: #3498db;
+    color: var(--accent-color);
     font-weight: bold;
 }
 
@@ -181,7 +203,7 @@ section {
 #contact input, #contact textarea {
     padding: 0.5em;
     margin-top: 0.2em;
-    border: 1px solid #ddd;
+    border: 1px solid var(--border-color);
     border-radius: 3px;
     font-size: 1em;
 }
@@ -189,8 +211,8 @@ section {
 #contact button {
     margin-top: 1em;
     padding: 0.5em;
-    background: #3498db;
-    color: #fff;
+    background: var(--accent-color);
+    color: var(--bg-color);
     border: none;
     border-radius: 3px;
     cursor: pointer;
@@ -202,8 +224,8 @@ section {
 
 /* Footer */
 footer {
-    background: #333;
-    color: #fff;
+    background: var(--text-color);
+    color: var(--bg-color);
     padding: 1em 0;
     text-align: center;
     position: fixed;
@@ -227,7 +249,7 @@ footer ul li {
 }
 
 footer ul li a {
-    color: #fff;
+    color: var(--bg-color);
 }
 
 /* Responsive Design */
@@ -266,9 +288,9 @@ footer ul li a {
 /* Style for Clickable Headers */
 section h2 {
     cursor: pointer;
-    background: #f4f4f4;
+    background: var(--section-bg);
     padding: 0.5em;
-    border: 1px solid #ddd;
+    border: 1px solid var(--border-color);
     border-radius: 5px;
 }
 /* Social Icons Styling */
@@ -296,7 +318,7 @@ section h2:hover {
     50% { opacity: 0; }
 }
 #social-links{
-    background-color: #fff;
+    background-color: var(--bg-color);
     padding-top: 5px;
     padding-bottom: 5px;
 }
