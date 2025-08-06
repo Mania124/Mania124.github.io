@@ -48,7 +48,7 @@
    <div class="left-side">
          <!-- Header / Navigation -->
         <header>
-            <img src="static/your-photo.jpg" alt="Your Name" class="profile-photo">
+            <img src="static/your-photo.jpg" alt="Profile Mugshot for Hezbron Shikuku" class="profile-photo">
             <h1>Hezborn A. Shikuku</h1>
             <nav>
             <ul>
@@ -94,6 +94,7 @@
         </section>
     </div>
     <div class="right-side">
+        <button id="theme-toggle" type="button">🌙 Dark Mode</button>
          <!-- About Section -->
         <section id="about">
             <h2 onclick="toggleAccordion('about-content')">About Me</h2>
@@ -221,6 +222,29 @@
 
     // Start typing effect when the page loads
     window.onload = typeText;
+</script>
+<!-- script for toggling themes -->
+<script>
+  const toggleBtn = document.getElementById("theme-toggle");
+  const currentTheme = localStorage.getItem("theme");
+
+  if (currentTheme === "dark") {
+    document.documentElement.setAttribute("data-theme", "dark");
+    toggleBtn.textContent = "☀️ Light Mode";
+  }
+
+  toggleBtn.addEventListener("click", function () {
+    const theme = document.documentElement.getAttribute("data-theme");
+    if (theme === "dark") {
+      document.documentElement.setAttribute("data-theme", "light");
+      localStorage.setItem("theme", "light");
+      toggleBtn.textContent = "🌙 Dark Mode";
+    } else {
+      document.documentElement.setAttribute("data-theme", "dark");
+      localStorage.setItem("theme", "dark");
+      toggleBtn.textContent = "☀️ Light Mode";
+    }
+  });
 </script>
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3.11.0/dist/email.min.js"></script>
 <script>
