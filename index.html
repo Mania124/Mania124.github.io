@@ -27,18 +27,43 @@
         }
         function toggleAccordion(sectionId) {
             const allContentSections = document.querySelectorAll('.accordion-content');
+            const content = document.getElementById(sectionId);
 
             // Close all sections except the one that is clicked
             allContentSections.forEach((section) => {
                 if (section.id !== sectionId) {
-                section.style.display = 'none';
+                    section.style.display = 'none';
+                    section.classList.remove('show');
                 }
             });
 
-            // Toggle the display of the clicked section
-            const content = document.getElementById(sectionId);
-            content.style.display = content.style.display === 'block' ? 'none' : 'block';
+            // Toggle the display of the clicked section with animation
+            if (content.style.display === 'block') {
+                content.classList.remove('show');
+                setTimeout(() => {
+                    content.style.display = 'none';
+                }, 300);
+            } else {
+                content.style.display = 'block';
+                setTimeout(() => {
+                    content.classList.add('show');
+                    // Trigger skill bar animations if it's the skills section
+                    if (sectionId === 'skills-content') {
+                        setTimeout(animateSkillBars, 100);
+                    }
+                }, 10);
+            }
+        }
 
+        function animateSkillBars() {
+            const skillBars = document.querySelectorAll('.skill-progress');
+            skillBars.forEach(bar => {
+                const width = bar.getAttribute('data-width');
+                bar.style.width = '0%';
+                setTimeout(() => {
+                    bar.style.width = width + '%';
+                }, 100);
+            });
         }
     </script>
     
@@ -90,12 +115,19 @@
 
         <!-- Hero Section -->
         <section id="hero">
-            <h2><span id="typed-text"></span></h2>
+            <canvas id="particles-canvas"></canvas>
+            <div class="hero-content">
+                <h2><span id="typed-text"></span></h2>
+                <div class="hero-buttons">
+                    <button class="cta-button" onclick="scrollToSection('projects-content')">View My Work</button>
+                    <button class="cta-button secondary" onclick="scrollToSection('contact-content')">Get In Touch</button>
+                </div>
+            </div>
         </section>
     </div>
     <div class="right-side">
-        <button id="theme-toggle" type="button">🌙 Dark Mode</button>
          <!-- About Section -->
+        <button id="theme-toggle" type="button">🌙 Dark Mode</button>
         <section id="about">
             <h2 onclick="toggleAccordion('about-content')">About Me</h2>
             <div id="about-content" class="accordion-content">
@@ -109,37 +141,113 @@
         <section id="skills">
             <h2 onclick="toggleAccordion('skills-content')">Skills & Technologies</h2>
             <div id="skills-content" class="accordion-content">
-                <ul>
-                    <li>Languages: <strong>Go, JavaScript, Rust</strong></li>
-                    <li>Web Development: <strong>Go, JavaScript</strong></li>
-                    <li>Version Control: <strong>Git</strong></li>
-                    <li>Microservices & Cloud: <strong>Github, Docker</strong></li>
-                    <li>Cybersecurity: <strong>Security best practices, threat mitigation</strong></li>
-                    <!-- Add any other relevant skills -->
-                </ul>
-            </div> 
+                <div class="skills-container">
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span>Go</span>
+                            <span>90%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="90"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span>JavaScript</span>
+                            <span>85%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="85"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span>Rust</span>
+                            <span>75%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="75"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span>Docker</span>
+                            <span>80%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="80"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span>Git</span>
+                            <span>85%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="85"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span>Cybersecurity</span>
+                            <span>70%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="70"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <!-- Projects Section -->
         <section id="projects">
             <h2 onclick="toggleAccordion('projects-content')">Projects</h2>
             <div id="projects-content" class="accordion-content">
-                <!-- Project Example -->
-                <div class="project">
-                    <h3>Groupie Trackers</h3>
-                    <p>Groupie Tracker  is a Go-based client-server project displaying band and artist data with concert details in a user-friendly interface.</p>
-                    <!-- <a href="project-link.html" target="_blank">View Project</a> -->
-                    <a href="https://github.com/Mania124/Groupies" target="_blank">View Code</a>
-                </div>
+                <div class="projects-grid">
+                    <!-- Project Example -->
+                    <div class="project-card">
+                        <div class="project-front">
+                            <h3>Groupie Trackers</h3>
+                            <div class="project-tech">
+                                <span class="tech-tag">Go</span>
+                                <span class="tech-tag">HTML</span>
+                                <span class="tech-tag">CSS</span>
+                            </div>
+                            <p>Go-based client-server project displaying band and artist data with concert details...</p>
+                            <div class="project-hover-indicator">Click to flip</div>
+                        </div>
+                        <div class="project-back">
+                            <h3>Groupie Trackers</h3>
+                            <p>A comprehensive Go-based client-server project that displays band and artist data with concert details in a user-friendly interface. Features include data visualization, responsive design, and efficient API handling.</p>
+                            <div class="project-links">
+                                <a href="https://github.com/Mania124/Groupies" target="_blank" class="project-btn">View Code</a>
+                                <a href="#" class="project-btn demo-btn">Live Demo</a>
+                            </div>
+                        </div>
+                    </div>
 
-                <div class="project">
-                    <h3>Ascii-Art Web</h3>
-                    <p>A web app using Go, HTML, CSS, and JavaScript that converts text to ASCII art, deployable via Docker for consistent environments.</p>
-                    <!-- <a href="project-link.html" target="_blank">View Project</a> -->
-                    <a href="https://github.com/Mania124/ascii-art-web" target="_blank">View Code</a>
+                    <div class="project-card">
+                        <div class="project-front">
+                            <h3>Ascii-Art Web</h3>
+                            <div class="project-tech">
+                                <span class="tech-tag">Go</span>
+                                <span class="tech-tag">JavaScript</span>
+                                <span class="tech-tag">Docker</span>
+                            </div>
+                            <p>Web app that converts text to ASCII art, deployable via Docker...</p>
+                            <div class="project-hover-indicator">Click to flip</div>
+                        </div>
+                        <div class="project-back">
+                            <h3>Ascii-Art Web</h3>
+                            <p>A web application using Go, HTML, CSS, and JavaScript that converts text to ASCII art. Features Docker deployment for consistent environments, multiple font styles, and real-time text conversion.</p>
+                            <div class="project-links">
+                                <a href="https://github.com/Mania124/ascii-art-web" target="_blank" class="project-btn">View Code</a>
+                                <a href="#" class="project-btn demo-btn">Live Demo</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
-                <!-- Add more projects as needed -->
             </div>
         </section>
 
@@ -164,7 +272,8 @@
         </section>
         <a href="https://1drv.ms/w/c/e91d089602c045dd/ET7nJDiJBZxGql4COeDiX74Bq9luRb_25I7RPLfCEe8Tug?e=SYM8it" target="_blank">Download Resume</a>
     </div>
-   
+</div>
+<div>
     <!-- Footer -->
     <footer>
         <p>&copy; 2024 Hezborn Shikuku. All Rights Reserved.</p>
@@ -175,17 +284,21 @@
     </footer>
 </div>
 <script>
-    let text = "I am a Software Developer in Web Apps, Microservices & Cybersecurity.";
     const textAlternatives = [
-        "I am a Software Developer in Web Apps, Microservices & Cybersecurity.",
-        "I specialize in Go, JavaScript, and building secure, scalable solutions."
+        "I am a Software Developer specializing in Web Apps, Microservices & Cybersecurity.",
+        "I build secure, scalable systems with Go and JavaScript.",
+        "I create robust microservices and web applications.",
+        "I'm passionate about cybersecurity and clean code."
     ];
+    let currentTextIndex = 0;
+    let text = textAlternatives[currentTextIndex];
     let index = 0;
     let isDeleting = false;
-    
+
     // Function to switch text every time the typing finishes
     function toggleText() {
-        text = (text === textAlternatives[0]) ? textAlternatives[1] : textAlternatives[0];
+        currentTextIndex = (currentTextIndex + 1) % textAlternatives.length;
+        text = textAlternatives[currentTextIndex];
     }
 
     function typeText() {
@@ -198,7 +311,7 @@
             if (index === text.length) {
                 // Pause and then start deleting
                 isDeleting = true;
-                setTimeout(typeText, 1500); // Wait 1.5 seconds before starting to delete
+                setTimeout(typeText, 2000); // Wait 2 seconds before starting to delete
                 return;
             }
         } else {
@@ -207,7 +320,7 @@
             index--;
             if (index === 0) {
                 // When finished deleting, switch the text and start typing again
-                toggleText(); // Toggle between the two texts
+                toggleText();
                 isDeleting = false;
                 setTimeout(typeText, 500); // Wait 0.5 seconds before retyping
                 return;
@@ -215,12 +328,121 @@
         }
 
         // Adjust typing and deleting speed
-        const speed = isDeleting ? 50 : 100;
+        const speed = isDeleting ? 30 : 80;
         setTimeout(typeText, speed);
     }
 
-    // Start typing effect when the page loads
-    window.onload = typeText;
+    // Particle system for hero background
+    function initParticles() {
+        const canvas = document.getElementById('particles-canvas');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = canvas.offsetWidth;
+            canvas.height = canvas.offsetHeight;
+        }
+
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        const particles = [];
+        const particleCount = 50;
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.vx = (Math.random() - 0.5) * 0.5;
+                this.vy = (Math.random() - 0.5) * 0.5;
+                this.size = Math.random() * 2 + 1;
+                this.opacity = Math.random() * 0.5 + 0.2;
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+
+                if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(52, 152, 219, ${this.opacity})`;
+                ctx.fill();
+            }
+        }
+
+        for (let i = 0; i < particleCount; i++) {
+            particles.push(new Particle());
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            particles.forEach(particle => {
+                particle.update();
+                particle.draw();
+            });
+
+            // Draw connections between nearby particles
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+
+                    if (distance < 100) {
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.strokeStyle = `rgba(52, 152, 219, ${0.1 * (1 - distance / 100)})`;
+                        ctx.stroke();
+                    }
+                }
+            }
+
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+    }
+
+    // Smooth scrolling function
+    function scrollToSection(sectionId) {
+        const element = document.getElementById(sectionId);
+        if (element) {
+            // First open the accordion if it's closed
+            if (element.style.display === 'none' || element.style.display === '') {
+                element.style.display = 'block';
+            }
+
+            // Then scroll to it
+            setTimeout(() => {
+                element.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }, 100);
+        }
+    }
+
+
+
+    // Initialize everything when page loads
+    window.onload = function() {
+        typeText();
+        initParticles();
+
+        // Add click listeners to project cards for flip effect
+        const projectCards = document.querySelectorAll('.project-card');
+        projectCards.forEach(card => {
+            card.addEventListener('click', function() {
+                this.classList.toggle('flipped');
+            });
+        });
+    };
 </script>
 <!-- script for toggling themes -->
 <script>
