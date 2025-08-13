@@ -256,6 +256,24 @@
             <h2 onclick="toggleAccordion('contact-content')">Contact Me</h2>
             <div id="contact-content" class="accordion-content">
                 <p>Feel free to reach out for collaborations or job opportunities.</p>
+
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <span class="contact-icon">📧</span>
+                        <span class="contact-label">Email:</span>
+                        <a href="mailto:shikukuhezborn@gmail.com" class="contact-link">shikukuhezborn@gmail.com</a>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">📱</span>
+                        <span class="contact-label">Phone:</span>
+                        <a href="tel:+254740900060" class="contact-link">+254 740 900 060</a>
+                    </div>
+                </div>
+
+                <div class="contact-divider">
+                    <span>Or send me a message</span>
+                </div>
+
                 <form id="contact-form" onsubmit="sendEmail(event)">
                     <label for="name">Name</label>
                     <input type="text" id="name" name="name" required>
@@ -276,7 +294,7 @@
 <div>
     <!-- Footer -->
     <footer>
-        <p>&copy; 2024 Hezborn Shikuku. All Rights Reserved.</p>
+        <p>&copy; <span id="current-year"></span> Hezborn Shikuku. All Rights Reserved.</p>
         <ul>
             <li><a href="https://www.linkedin.com/in/hezborn-shikuku" target="_blank"><img src="/static/icons/linkedin-logo.svg" alt="linkedin-logo" class="social-icon"/></a></li>
             <li><a href="https://github.com/Mania124" target="_blank"><img src="/static/icons/github-logo.svg" alt="GitHub logo" class="social-icon"></a></li>
@@ -434,6 +452,9 @@
     window.onload = function() {
         typeText();
         initParticles();
+
+        // Set current year in footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
 
         // Add click listeners to project cards for flip effect
         const projectCards = document.querySelectorAll('.project-card');
