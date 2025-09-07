@@ -459,7 +459,7 @@
                 const repos = await response.json();
 
                 // Filter out forked repos and select interesting ones
-                const filteredRepos = repos.filter(repo => repo.description && repo.fork===false);
+                const filteredRepos = repos.filter(repo => repo.description);
                 // const filtered = filteredRepos.filter(repo => !repo.fork);
                 // console.log(filteredRepos.length)
                 // Clear existing projects
