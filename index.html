@@ -460,7 +460,7 @@
 
                 // Filter out forked repos and select interesting ones
                 const filteredRepos = repos.filter(repo => repo.description);
-                filteredRepos = repos.filter(repo => !repo.fork);
+                filteredRepos = filteredRepos.filter(repo => !repo.fork);
                 console.log(filteredRepos.length())
                 // Clear existing projects
                 projectsGrid.innerHTML = '';
