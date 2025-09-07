@@ -460,13 +460,13 @@
 
                 // Filter out forked repos and select interesting ones
                 const filteredRepos = repos.filter(repo => repo.description);
-                const filtered = filteredRepos.filter(repo => !repo.fork);
-                console.log(filtered.length())
+                // const filtered = filteredRepos.filter(repo => !repo.fork);
+                console.log(filteredRepos.length())
                 // Clear existing projects
                 projectsGrid.innerHTML = '';
 
                 // Create project cards for each repo
-                filtered.slice(0, 6).forEach(repo => {
+                filteredRepos.forEach(repo => {
                     const projectCard = createProjectCard(repo);
                     projectsGrid.appendChild(projectCard);
                 });
